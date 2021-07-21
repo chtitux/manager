@@ -23,4 +23,13 @@ export default class SvaWalletService {
   getSvaWallet() {
     return this.$http.get('/me/sva/wallet').then(({ data: wallet }) => wallet);
   }
+
+  getCompanyKinds() {
+    return this.$http
+      .get('/me.json')
+      .then(
+        ({ data: schema }) =>
+          schema.models['me.sva.wallet.CompanyKindEnum'].enum,
+      );
+  }
 }

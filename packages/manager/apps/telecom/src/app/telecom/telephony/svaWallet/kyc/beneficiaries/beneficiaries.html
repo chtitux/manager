@@ -1,0 +1,57 @@
+<div data-ng-if="!$ctrl.editable">
+    <h3
+        data-translate="telephony_billingAccount_svaWallet_kyc_identity_beneficiaries_title"
+    ></h3>
+
+    <div class="oui-field oui-field_auto oui-field_xl">
+        <span
+            data-translate="telephony_billingAccount_svaWallet_kyc_identity_beneficiaries_representativeIsBeneficiary"
+            data-ng-if="$ctrl.representativeIsBeneficiary"
+        ></span>
+    </div>
+
+    <telephony-sva-wallet-kyc-beneficiaries-list
+        beneficiaries="$ctrl.beneficiaries"
+    >
+    </telephony-sva-wallet-kyc-beneficiaries-list>
+</div>
+
+<div data-ng-if="$ctrl.editable">
+    <h3
+        data-translate="telephony_billingAccount_svaWallet_kyc_identity_beneficiaries_editable_title"
+    ></h3>
+    <oui-field size="xl">
+        <oui-checkbox
+            model="$ctrl.representativeIsBeneficiary"
+            name="companyRepresentativeIsBeneficiary"
+        >
+            <span
+                data-translate="telephony_billingAccount_svaWallet_kyc_identity_beneficiaries_representativeIsBeneficiary"
+            ></span>
+        </oui-checkbox>
+    </oui-field>
+
+    <telephony-sva-wallet-kyc-beneficiaries-list
+        beneficiaries="$ctrl.beneficiaries"
+    >
+    </telephony-sva-wallet-kyc-beneficiaries-list>
+
+    <oui-button
+        variant="secondary"
+        ng-if="!$ctrl.showBeneficiaryForm && $ctrl.canAddBeneficiaries"
+        on-click="$ctrl.displayBeneficiatyForm()"
+    >
+        <span class="oui-icon oui-icon-add"></span>
+        <span
+            data-translate="telephony_billingAccount_svaWallet_kyc_identity_beneficiaries_add"
+        ></span>
+    </oui-button>
+
+    <telephony-sva-wallet-kyc-beneficiary-form
+        ng-if="$ctrl.showBeneficiaryForm"
+        on-submit="$ctrl.saveBeneficiary(beneficiary)"
+        on-cancel="$ctrl.cancelBeneficiary()"
+        country-enum="$ctrl.countryEnum"
+    >
+    </telephony-sva-wallet-kyc-beneficiary-form>
+</div>

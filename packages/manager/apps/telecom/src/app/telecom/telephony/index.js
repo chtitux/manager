@@ -31,9 +31,19 @@ angular
             ) => TelephonySvaWalletService.isFeatureAvailable(),
             getSvaWallet: /* @ngInject */ (TelephonySvaWalletService) => () =>
               TelephonySvaWalletService.getSvaWallet(),
-            isSvaWalletValid: /* @ngInject */ (TelephonySvaWalletService) => (
-              wallet,
-            ) => TelephonySvaWalletService.isSvaWalletValid(wallet),
+
+            isSvaWalletValid: /* @ngInject */ (
+              TelephonySvaWalletService,
+              isSvaWalletFeatureAvailable,
+              $q,
+            ) => {
+              if (!isSvaWalletFeatureAvailable) {
+                return () => $q.when(false);
+              }
+              return (wallet) =>
+                TelephonySvaWalletService.isSvaWalletValid(wallet);
+            },
+
             goToSvaWallet: /* @ngInject */ ($state) => () =>
               $state.go('telecom.telephony.billingAccount.svaWallet'),
           },

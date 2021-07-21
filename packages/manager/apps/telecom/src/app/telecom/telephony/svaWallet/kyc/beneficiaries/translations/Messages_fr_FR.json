@@ -1,0 +1,16 @@
+{
+  "telephony_billingAccount_svaWallet_kyc_identity_beneficiaries_title": "Bénéficiaires",
+  "telephony_billingAccount_svaWallet_kyc_identity_beneficiaries_editable_title": "Ajout bénéficiaire",
+  "telephony_billingAccount_svaWallet_kyc_identity_beneficiaries_representativeIsBeneficiary": "Mon représentant est bénéficiaire",
+
+  "telephony_billingAccount_svaWallet_kyc_identity_beneficiaries_beneficiary_title": "Bénéficiaire {{num}}",
+  "telephony_billingAccount_svaWallet_kyc_identity_beneficiaries_add": "Ajout d'un bénéficiaire",
+  "telephony_billingAccount_svaWallet_kyc_identity_beneficiaries_add_submit": "Ajouter",
+  "telephony_billingAccount_svaWallet_kyc_identity_beneficiaries_add_cancel": "Annuler",
+
+  "telephony_billingAccount_svaWallet_kyc_identity_beneficiaries_lastname": "Nom du bénéficiaire",
+  "telephony_billingAccount_svaWallet_kyc_identity_beneficiaries_firstname": "Prénom du bénéficiaire",
+  "telephony_billingAccount_svaWallet_kyc_identity_beneficiaries_birthdate": "Date de naissance",
+  "telephony_billingAccount_svaWallet_kyc_identity_beneficiaries_birthcity": "Ville de naissance",
+  "telephony_billingAccount_svaWallet_kyc_identity_beneficiaries_country": "Pays"
+}
