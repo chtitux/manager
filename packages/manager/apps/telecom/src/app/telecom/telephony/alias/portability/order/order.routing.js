@@ -14,6 +14,15 @@ export default /* @ngInject */ ($stateProvider) => {
     resolve: {
       breadcrumb: /* @ngInject */ ($translate) =>
         $translate.instant('telephony_alias_portability_order_title'),
+      canOrderSpecialPortability: /* @ngInject */ (
+        isSvaWalletFeatureAvailable,
+        isSvaWalletValid,
+      ) =>
+        isSvaWalletFeatureAvailable
+          ? isSvaWalletValid()
+              .then((valid) => valid)
+              .catch(() => false)
+          : true,
     },
   });
 };
