@@ -566,10 +566,8 @@ export default class XdslStatisticsCtrl {
         crc: this.getLinesStatistics('error:crc', period),
       })
       .then((stats) => {
-        this.errors.haveSeries = !!(
-          stats.hec.length &&
-          stats.fec.length &&
-          stats.crc.length
+        this.errors.haveSeries = !!Object.values(stats).every(
+          (stat) => stat.length,
         );
 
         this.errors.chart = new this.TucChartjsFactory(
