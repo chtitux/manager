@@ -146,7 +146,7 @@ export default class PciStoragesContainersService {
       );
   }
 
-  getContainer(projectId, containerId, isHighPerfStorage) {
+  getContainer(projectId, containerId, isHighPerfStorage = false) {
     let promise = null;
     if (isHighPerfStorage) {
       promise = this.$http
@@ -172,9 +172,13 @@ export default class PciStoragesContainersService {
           new Container({
             ...container,
             state: container.public,
+            isHighPerfStorage,
             objects: map(
               container.objects,
-              (object) => new ContainerObject(object),
+              (object) => new ContainerObject({
+                ...object,
+                isHighPerfStorage,
+              }),
             ),
             id: containerId,
             publicUrl,
@@ -365,6 +369,39 @@ export default class PciStoragesContainersService {
     });
   }
 
+  addHighPerfObjects(serviceName, regionName, containerName, files) {
+    return this.$q.all(
+      map(files, (file) =>
+        this.addHighPerfObject(serviceName, regionName, containerName, file),
+      ),
+    );
+  }
+
+  addHighPerfObject(serviceName, regionName, containerName, file) {
+    const config = {
+      headers: {
+        'Content-Type': file.type,
+      },
+      data: file,
+    };
+    return this.$http.post(
+      `/cloud/project/${serviceName}/region/${regionName}/storage/${containerName}/presign`,
+      {
+        expire: 3600,
+        method: 'PUT',
+        object: file.name,
+      }
+    )
+    .then((res) => res.data)
+    .then(({ url }) => {
+      return this.$http.put(url, config.data, {
+        headers: {
+          ...config.headers,
+        },
+      });
+    });
+  }
+
   deleteObject(projectId, container, object) {
     return this.requestContainer(projectId, container, {
       method: 'DELETE',
@@ -392,6 +429,17 @@ export default class PciStoragesContainersService {
 
   downloadObject(projectId, containerId, object) {
     return this.getObjectUrl(projectId, containerId, object);
+  }
+
+  downloadHighPerfObject(serviceName, regionName, containerName, object) {
+    return this.$http.post(
+      `/cloud/project/${serviceName}/region/${regionName}/storage/${containerName}/presign`,
+      {
+        expire: 3600,
+        method: 'GET',
+        object: object.key,
+      }
+    ).then((res) => res.data);
   }
 
   unsealObject(projectId, container, object) {

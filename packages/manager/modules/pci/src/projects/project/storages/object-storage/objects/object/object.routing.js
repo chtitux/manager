@@ -1,40 +1,28 @@
+import find from 'lodash/find';
+
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('pci.projects.project.storages.objects.objects.object', {
-    url: '/{containerId}?isHighPerfStorage',
+    url: '/{containerId}',
     component: 'pciProjectStorageContainersContainer',
     resolve: {
-      isHighPerfStorage: /* @ngInject */ ($transition$) =>
-        $transition$.params().isHighPerfStorage === 'true',
       containerId: /* @ngInject */ ($transition$) =>
         $transition$.params().containerId,
       container: /* @ngInject */ (
         PciProjectStorageContainersService,
         projectId,
         containerId,
-        isHighPerfStorage,
-      ) =>
-        PciProjectStorageContainersService.getContainer(
+        containers,
+      ) => {
+        const container = find(
+          containers,
+          (container) => container.id === containerId,
+        );
+        return PciProjectStorageContainersService.getContainer(
           projectId,
           containerId,
-          isHighPerfStorage,
-        ),
-
-      addObject: /* @ngInject */ ($state, projectId, containerId) => () =>
-        $state.go('pci.projects.project.storages.objects.objects.object.add', {
-          projectId,
-          containerId,
-        }),
-      deleteObject: /* @ngInject */ ($state, projectId, containerId) => (
-        object,
-      ) =>
-        $state.go(
-          'pci.projects.project.storages.objects.objects.object.delete',
-          {
-            projectId,
-            containerId,
-            objectId: object.name,
-          },
-        ),
+          container.isHighPerfStorage,
+        );
+      },
 
       goBack: /* @ngInject */ (goToStorageContainers) => goToStorageContainers,
 
