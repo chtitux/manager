@@ -1,0 +1,9 @@
+{
+  "globals": {
+    "__VERSION__": true,
+    "__NG_APP_INJECTIONS__": true,
+    "__NODE_ENV__": true,
+    "__SHELL_ID__": true,
+    "__SHELL_STARTING_URL__": true
+  }
+}

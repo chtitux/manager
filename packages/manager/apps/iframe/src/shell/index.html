@@ -1,0 +1,21 @@
+<html>
+    <head>
+        <title>Shell</title>
+        <link href="/common/style.css" rel="stylesheet" />
+    </head>
+    <body>
+        <pre id="url">http://</pre>
+        <p>Shell</p>
+        <a href="#/subshell1/app1/aaa">subshell1/app1/aaa</a><br />
+        <a href="#/subshell2/app1/bbb">subshell2/app1/bbb</a><br />
+        <a href="#/subshell2/app2">subshell2/app2</a><br />
+        <iframe src="/subshell1"> </iframe>
+        <script src="/common/index.js"></script>
+        <script>
+            window.ufrontendBootstrap({
+                applicationId: 'shell',
+                subApplications: ['subshell1', 'subshell2'],
+            });
+        </script>
+    </body>
+</html>

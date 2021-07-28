@@ -1,0 +1,22 @@
+<html>
+    <head>
+        <title>Subshell 2</title>
+        <link href="/common/style.css" rel="stylesheet" />
+    </head>
+    <body>
+        <pre id="url">http://</pre>
+        <p>Sub-shell 2</p>
+        <a href="#/app1/aaa">app1/aaa</a><br />
+        <a href="#/app1/bbb">app1/bbb</a><br />
+        <a href="#/app2/ccc">app2/ccc</a><br />
+        <a href="#/app2/ddd">app2/ddd</a><br />
+        <iframe src="/app1"> </iframe>
+        <script src="/common/index.js"></script>
+        <script>
+            window.ufrontendBootstrap({
+                applicationId: 'subshell2',
+                subApplications: ['app1', 'app2'],
+            });
+        </script>
+    </body>
+</html>
