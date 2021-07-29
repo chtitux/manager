@@ -23,7 +23,6 @@ export default /* @ngInject */ ($stateProvider) => {
           containerId,
           isHighPerfStorage,
         ),
-
       addObject: /* @ngInject */ ($state, projectId, containerId) => () =>
         $state.go('pci.projects.project.storages.objects.object.add', {
           projectId,

@@ -1,6 +1,6 @@
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state(
-    'pci.projects.project.storages.containers.objects.addUser',
+    'pci.projects.project.storages.objects.objects.addUser',
     {
       url: '/addUser?containerId&isHighPerfStorage',
       views: {
@@ -16,7 +16,7 @@ export default /* @ngInject */ ($stateProvider) => {
             availableUsers.length === 0
               ? {
                   state:
-                    'pci.projects.project.storages.containers.objects.emptyUser',
+                    'pci.projects.project.storages.objects.objects.emptyUser',
                 }
               : false,
           ),
