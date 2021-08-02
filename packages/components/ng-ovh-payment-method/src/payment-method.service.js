@@ -5,6 +5,8 @@ export default class OvhPaymentMethodService {
   /* @ngInject */
   constructor($q, coreConfig, paymentMethodPageUrl, userLocale) {
     const ovhPaymentMethodReketInstance = useReket(false);
+    const responseSuccessHook = (response) => $q.when(response);
+
     const responseErrorHook = (error) => {
       return ssoAuthHookFn(error).catch((hookFnError) =>
         $q.reject(hookFnError),
@@ -12,7 +14,7 @@ export default class OvhPaymentMethodService {
     };
 
     ovhPaymentMethodReketInstance.config.hooks.response.set(
-      null,
+      responseSuccessHook,
       responseErrorHook,
     );
 
