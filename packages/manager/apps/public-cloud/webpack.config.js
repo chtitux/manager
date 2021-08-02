@@ -1,6 +1,6 @@
 const fs = require('fs');
 const glob = require('glob');
-const merge = require('webpack-merge');
+const { merge } = require('webpack-merge');
 const path = require('path');
 const webpackConfig = require('@ovh-ux/manager-webpack-config');
 const webpack = require('webpack');
@@ -57,7 +57,6 @@ module.exports = (env = {}) => {
       ...(extras.length > 0 ? { extras } : {}),
     },
     output: {
-      path: path.join(__dirname, 'dist'),
       filename: '[name].[chunkhash].bundle.js',
     },
     plugins: [

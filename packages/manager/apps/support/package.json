@@ -9,7 +9,7 @@
     "directory": "packages/manager/apps/support"
   },
   "scripts": {
-    "build": "webpack",
+    "build": "webpack --env production",
     "dev": "webpack-dev-server",
     "dev:watch": "yarn run dev",
     "start": "lerna exec --stream --scope='@ovh-ux/manager-support-app' --include-dependencies -- npm run build --if-present",
@@ -56,6 +56,6 @@
   "devDependencies": {
     "@ovh-ux/manager-webpack-config": "^3.3.0 || ^4.0.0",
     "glob": "^7.1.6",
-    "webpack-merge": "^4.2.2"
+    "webpack-merge": "^5.8.0"
   }
 }

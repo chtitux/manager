@@ -6,15 +6,13 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 const get = require('lodash/get');
 const set = require('lodash/set');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const TerserJSPlugin = require('terser-webpack-plugin');
-const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
+const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 const webpackRetryChunckLoadPlugin = require('webpack-retry-chunk-load-plugin');
+const webpack = require('webpack');
 
 const RetryChunkLoadPlugin = Object.assign(
   webpackRetryChunckLoadPlugin.RetryChunkLoadPlugin,
 );
-
-const webpack = require('webpack');
 
 const cacheLoader = {
   loader: 'cache-loader',
@@ -23,8 +21,7 @@ const cacheLoader = {
   },
 };
 
-// The common webpack configuration
-
+// The common webpack configuration.
 module.exports = (opts) => {
   const lessLoaderOptions = {
     sourceMap: true,
@@ -49,22 +46,23 @@ module.exports = (opts) => {
 
   return {
     plugins: [
-      // copy application assets
-      // note: we could use the html-loader plugin but it wouldn't work for dynamic src attributes!
+      // Copy application assets.
+      // note: we could use the `html-loader` plugin but it wouldn't work for
+      //       dynamic src attributes.
       new CopyWebpackPlugin(
         get(opts, 'assets.files', []),
         get(opts, 'assets.options', {}),
       ),
 
-      // see : https://github.com/jantimon/html-webpack-plugin
+      // see: https://github.com/jantimon/html-webpack-plugin
       new HtmlWebpackPlugin({
-        template: opts.template, // path to application's main html template
+        template: opts.template, // path to application's main HTML template.
       }),
 
-      // display pretty loading bars
+      // Display pretty loading bars.
       new WebpackBar({
-        name: 'OVH Manager',
-        color: '#59d2ef',
+        name: 'OVHcloud Manager',
+        color: '#0050d7',
       }),
 
       new MiniCssExtractPlugin({
@@ -77,47 +75,51 @@ module.exports = (opts) => {
       }),
 
       new RetryChunkLoadPlugin({
-        // optional stringified function to get the cache busting query string appended to the script src
+        // optional stringified function to get the cache busting query string
+        // appended to the script src.
         // if not set will default to appending the string `?cache-bust=true`
         cacheBust: `function() {
           return Date.now();
         }`,
-        // optional value to set the maximum number of retries to load the chunk. Default is 1
+        // optional value to set the maximum number of retries to load the chunk.
+        // Default is 1
         maxRetries: 5,
       }),
     ],
 
     resolve: {
+      fallback: {
+        stream: false,
+        os: false,
+      },
       modules: ['./node_modules', path.resolve('./node_modules')],
     },
 
     resolveLoader: {
-      // webpack module resolution paths
       modules: [
-        './node_modules', // #1 check in module's relative node_module directory
-        path.resolve('./node_modules'), // #2 check in application's node_module directory
+        // #1 check in module's relative node_modules directory
+        './node_modules',
+
+        // #2 check in application's node_modules directory
+        path.resolve('./node_modules'),
       ],
     },
 
     module: {
       rules: [
-        // load HTML files as string (raw-loader)
+        // Load HTML files as string.
         {
           test: /\.html$/,
           loader: 'raw-loader',
         },
 
-        // load images & fonts into file or convert to base64 if size < 10Kib
+        // Load Images & Fonts into file.
         {
           test: /\.(png|jpg|gif|svg|eot|ttf|woff|woff2)$/,
-          loader: 'url-loader',
-          options: {
-            limit: 10000,
-            esModule: false,
-          },
+          type: 'asset/resource',
         },
 
-        // load css files
+        // Load CSS files.
         {
           test: /\.css$/,
           use: [
@@ -126,16 +128,10 @@ module.exports = (opts) => {
             {
               loader: 'css-loader', // translates CSS into CommonJS
             },
-            {
-              loader: 'resolve-url-loader', // specify relative path for Less files
-              options: {
-                root: opts.root,
-              },
-            },
           ],
         },
 
-        // load Less files
+        // Load Less files.
         {
           test: /\.less$/,
           use: [
@@ -157,18 +153,32 @@ module.exports = (opts) => {
           ],
         },
 
-        // load Sass files
+        // Load SCSS files.
         {
           test: /\.scss$/,
           use: [
             MiniCssExtractPlugin.loader,
             cacheLoader,
             'css-loader', // translates CSS into CommonJS
-            'sass-loader', // compiles Sass to CSS
+            {
+              loader: 'resolve-url-loader',
+              options: {
+                root: opts.root,
+              },
+            },
+            {
+              loader: 'sass-loader',
+              options: {
+                sourceMap: true,
+                sassOptions: {
+                  sourceMapContents: false,
+                },
+              },
+            },
           ],
         },
 
-        // normalize json translation files
+        // Normalize JSON translation files.
         {
           test: /Messages_\w+_\w+\.json$/,
           use: [
@@ -179,7 +189,7 @@ module.exports = (opts) => {
           ],
         },
 
-        // load JS files
+        // Load JS files.
         {
           test: /\.js$/,
           exclude: jsExclude,
@@ -188,15 +198,13 @@ module.exports = (opts) => {
             {
               loader: 'babel-loader', // babelify JS sources
               options: {
-                presets: [
-                  require.resolve('@babel/preset-env'), // babel preset configuration
-                ],
+                presets: [require.resolve('@babel/preset-env')],
                 plugins: [
-                  require.resolve('@babel/plugin-proposal-class-properties'), // class properties
-                  require.resolve('@babel/plugin-proposal-optional-chaining'), // optional chaining
-                  require.resolve('@babel/plugin-proposal-private-methods'), // private methods
-                  require.resolve('@babel/plugin-syntax-dynamic-import'), // dynamic es6 imports
-                  require.resolve('babel-plugin-angularjs-annotate'), // ng annotate
+                  require.resolve('@babel/plugin-proposal-class-properties'),
+                  require.resolve('@babel/plugin-proposal-optional-chaining'),
+                  require.resolve('@babel/plugin-proposal-private-methods'),
+                  require.resolve('@babel/plugin-syntax-dynamic-import'),
+                  require.resolve('babel-plugin-angularjs-annotate'),
                 ],
                 shouldPrintComment: (val) => !/@ngInject/.test(val),
               },
@@ -204,8 +212,8 @@ module.exports = (opts) => {
           ],
         },
 
-        // inject translation imports into JS source code,
-        // given proper ui-router state 'translations' property
+        // Inject translation imports into JS source code,
+        // given proper ui-router state `translations` property.
         {
           test: /\.js$/,
           exclude: jsExclude,
@@ -225,7 +233,7 @@ module.exports = (opts) => {
           ],
         },
 
-        // inject translation with @ngTranslationsInject comment
+        // Inject translation with `@ngTranslationsInject` comment.
         {
           test: /\.js$/,
           exclude: jsExclude,
@@ -247,19 +255,12 @@ module.exports = (opts) => {
     }, // \module
 
     optimization: {
-      minimizer: [new TerserJSPlugin({}), new OptimizeCSSAssetsPlugin({})],
+      minimizer: [new CssMinimizerPlugin({}), '...'],
       runtimeChunk: 'single',
-      // bundle spliting configuration
+      // Bundle spliting configuration.
       splitChunks: {
-        // vendors bundle containing node_modules source code
+        // Vendors bundle containing `node_modules` source code.
         cacheGroups: {
-          bower: {
-            chunks: 'initial',
-            test: /[\\/]node_modules[\\/]@bower_components[\\/]/,
-            name: 'bower',
-            enforce: true,
-            priority: 1,
-          },
           ovh: {
             chunks: 'initial',
             test: /[\\/]node_modules[\\/]@ovh-ux[\\/]/,

@@ -29,7 +29,7 @@
 .telecom-pack-xdsl-orderFollowUp {
   ul.timeline {
     &::before {
-      left: @timeline-padding-desktop-left + @timeline-circle-width / 2 + 3;
+      left: @timeline-padding-desktop-left + (@timeline-circle-width / 2) + 3;
       background-color: @text-color;
     }
 
@@ -167,7 +167,7 @@
   @media only screen and (max-width: (@timeline-mobile-width - 1)) {
     ul.timeline {
       &::before {
-        left: @timeline-circle-width / 2;
+        left: (@timeline-circle-width / 2);
       }
 
       li {

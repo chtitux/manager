@@ -20,7 +20,7 @@
   "dependencies": {
     "@babel/core": "^7.12.10",
     "@babel/plugin-syntax-dynamic-import": "^7.8.3",
-    "@babel/preset-env": "^7.10.3",
+    "@babel/preset-env": "^7.14.8",
     "@ovh-ux/rollup-plugin-less-inject": "^1.0.5",
     "@rollup/plugin-babel": "^5.0.0",
     "@rollup/plugin-commonjs": "^11.0.2",
@@ -33,7 +33,7 @@
     "camelcase": "^5.0.0",
     "core-js": "^3.6.5",
     "estree-walker": "^0.6.0",
-    "less": "~3.9.0",
+    "less": "~4.1.1",
     "less-plugin-remcalc": "^0.1.0",
     "lodash": "^4.17.15",
     "magic-string": "^0.25.4",

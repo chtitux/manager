@@ -16,7 +16,7 @@ This configuration is meant to be merged with your webpack configuration using
 the webpack-merge library.
 
 ```js
-const merge = require('webpack-merge');
+const { merge } = require('webpack-merge');
 const devServer = require('manager-webpack-dev-server');
 
 const devConfig = devServer.config(env);

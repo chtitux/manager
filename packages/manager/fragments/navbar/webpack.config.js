@@ -38,10 +38,6 @@ module.exports = {
   },
   output: {
     filename: 'index.js',
-    jsonpFunction: `wpJsonp${manifest.name.replace(
-      /[^\w]/g,
-      '',
-    )}${new Date().getTime()}`,
     path: path.resolve(__dirname, 'dist'),
     publicPath: `/manager/fragments/${manifest.name}/${manifest.version}/`,
   },

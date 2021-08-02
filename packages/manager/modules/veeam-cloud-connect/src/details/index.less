@@ -9,7 +9,7 @@
   @spacing-side_s: 32px;
   @spacing-side_l: 48px;
 
-  @tile-margin: @tile-gutter / 2;
+  @tile-margin: (@tile-gutter / 2);
 
   .flag-icon {
     border-radius: 3px;
@@ -169,13 +169,13 @@
     margin: 0;
   }
 
-  @media (max-width: 1280px) {
+  @media all and (max-width: 1280px) {
     &-header {
       padding: @spacing-top @spacing-side_s;
     }
 
     &__dashboard {
-      padding: @spacing-top - @tile-margin @spacing-side_s - @tile-margin;
+      padding: (@spacing-top - @tile-margin) (@spacing-side_s - @tile-margin);
     }
   }
 }

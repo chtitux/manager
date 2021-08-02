@@ -6,7 +6,7 @@
   position: relative;
 
   .progress {
-    border-radius: unit(@ovh-progress-bar-height / 2, px);
+    border-radius: unit((@ovh-progress-bar-height / 2), px);
     min-height: unit(@ovh-progress-bar-height, px);
 
     .progress-bar {
@@ -16,9 +16,10 @@
       min-height: unit(@ovh-progress-bar-height, px);
 
       &::after {
-        border-bottom: unit(@ovh-progress-bar-height / 2, px) solid transparent;
-        border-left: unit(@ovh-progress-bar-height / 2, px) solid #27b9a2;
-        border-top: unit(@ovh-progress-bar-height / 2, px) solid transparent;
+        border-bottom: unit((@ovh-progress-bar-height / 2), px) solid
+          transparent;
+        border-left: unit((@ovh-progress-bar-height / 2), px) solid #27b9a2;
+        border-top: unit((@ovh-progress-bar-height / 2), px) solid transparent;
         content: '';
         display: block;
         height: 0;
@@ -45,7 +46,7 @@
 
       li {
         margin-left: -10px;
-        padding-top: unit(@ovh-progress-bar-height + 5, px);
+        padding-top: unit((@ovh-progress-bar-height + 5), px);
         position: absolute;
 
         &::before {
@@ -54,20 +55,20 @@
           border-radius: 50%;
           content: '';
           display: block;
-          height: unit(@ovh-progress-bar-height / 2, px);
+          height: unit((@ovh-progress-bar-height / 2), px);
           position: absolute;
-          top: unit(@ovh-progress-bar-height / 4, px);
-          width: unit(@ovh-progress-bar-height / 2, px);
+          top: unit((@ovh-progress-bar-height / 4), px);
+          width: unit((@ovh-progress-bar-height / 2), px);
         }
 
         &:first-child,
         &.active {
           &::after {
-            border-left: unit(@ovh-progress-bar-height / 10, px) solid
+            border-left: unit((@ovh-progress-bar-height / 10), px) solid
               transparent;
-            border-right: unit(@ovh-progress-bar-height / 10, px) solid
+            border-right: unit((@ovh-progress-bar-height / 10), px) solid
               transparent;
-            border-top: unit(@ovh-progress-bar-height / 10, px) solid #27b9a2;
+            border-top: unit((@ovh-progress-bar-height / 10), px) solid #27b9a2;
             content: '';
             display: block;
             height: 0;

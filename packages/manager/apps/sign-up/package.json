@@ -13,9 +13,9 @@
   "main": "./src/index.js",
   "scripts": {
     "build": "yarn build:eu && yarn build:ca && yarn build:us",
-    "build:ca": "webpack --env.production --env.region=\"CA\" && mv dist dist-CA",
-    "build:eu": "webpack --env.production && mv dist dist-EU",
-    "build:us": "webpack --env.production --env.region=\"US\" && mv dist dist-US",
+    "build:ca": "webpack --env production --env region=CA && mv dist dist-CA",
+    "build:eu": "webpack --env production && mv dist dist-EU",
+    "build:us": "webpack --env production --env region=US && mv dist dist-US",
     "dev": "webpack-dev-server",
     "dev:watch": "yarn run dev",
     "start": "lerna exec --stream --scope='@ovh-ux/sign-up-app' --include-dependencies -- npm run build --if-present",
@@ -51,7 +51,7 @@
   "devDependencies": {
     "@ovh-ux/manager-webpack-config": "^3.0.7 || ^4.0.0",
     "glob": "^7.1.4",
-    "webpack": "^4.44.2",
-    "webpack-merge": "^4.2.2"
+    "webpack": "^5.48.0",
+    "webpack-merge": "^5.8.0"
   }
 }
