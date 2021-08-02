@@ -25,8 +25,8 @@
     "start:watch": "lerna exec --stream --parallel --scope='@ovh-ux/ovh-reket' --include-dependencies -- yarn run dev:watch"
   },
   "dependencies": {
-    "@ovhcloud/reket-axios-client": "^0.1.1",
-    "@ovhcloud/reket-core": "^0.1.1"
+    "@ovhcloud/reket-axios-client": "^0.2.0",
+    "@ovhcloud/reket-core": "^0.2.0"
   },
   "devDependencies": {
     "@ovh-ux/component-rollup-config": "^9.0.0 || ^10.0.0"
