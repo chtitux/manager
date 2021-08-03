@@ -3058,18 +3058,18 @@
   resolved "https://registry.npmjs.org/@ovh-ux/ui-kit/-/ui-kit-4.7.0.tgz#898e57526c6c815103e5ce3b6889e18cfc439028"
   integrity sha512-879lV+UnjaWyp4F7dPwJiv1jEUeeRmCdaKM5VtjjGO2OZhj+SAyup20mLEQxFVkakhkjAL07BT/z9ReM+9rPOQ==
 
-"@ovhcloud/reket-axios-client@^0.2.0":
-  version "0.2.0"
-  resolved "https://registry.yarnpkg.com/@ovhcloud/reket-axios-client/-/reket-axios-client-0.2.0.tgz#1322029206790e9a568a5c1b66610f6d30ae1d5f"
-  integrity sha512-sMYpfx6X1DkkdALOpNE3WyLPAmTOGgVcHTd99LVqGmsmCu8+MsZtCwF4Vaf+topPghcXDG81yrkLkXDmVxNYaA==
+"@ovhcloud/reket-axios-client@^0.2.1":
+  version "0.2.1"
+  resolved "https://registry.yarnpkg.com/@ovhcloud/reket-axios-client/-/reket-axios-client-0.2.1.tgz#835997e9d3514a5855dc4d7ac867abe8b2c8638d"
+  integrity sha512-u6X7Opfcqk4cagz++cescEzKnOzyQStqj6DtoJWx4lFQKcM/bFu/g4n/DSVGFP+xDOmyMJFN2JJAmtRVJQjlfQ==
   dependencies:
-    "@ovhcloud/reket-core" "^0.2.0"
+    "@ovhcloud/reket-core" "^0.2.1"
     axios "^0.21.1"
 
-"@ovhcloud/reket-core@^0.2.0":
-  version "0.2.0"
-  resolved "https://registry.yarnpkg.com/@ovhcloud/reket-core/-/reket-core-0.2.0.tgz#e3425694f991b8175659ecbe28814da058f3ed59"
-  integrity sha512-5RnHFh7cgcA21hpGjyR3P51mkbZLNheqYdzkFTmD8p1xb+JYUCBQOQ7mKJl0819SRE17an7YCNx9rbXnNoz9tA==
+"@ovhcloud/reket-core@^0.2.1":
+  version "0.2.1"
+  resolved "https://registry.yarnpkg.com/@ovhcloud/reket-core/-/reket-core-0.2.1.tgz#b38a101af16a11683bb875e44cd228d636c1ba8f"
+  integrity sha512-RdRV7ZJU+CKULTeoXnZD+YNZDOui5RUD+SPT1EpGEpMI3Nbix5RiT9wZx/zPYFKCSw1eYJ+Ycr+8G4wEaWaTEQ==
 
 "@rollup/plugin-babel@^5.0.0":
   version "5.0.0"
