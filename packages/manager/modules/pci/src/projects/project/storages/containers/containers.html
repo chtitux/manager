@@ -2,10 +2,11 @@
     <div>
         <oui-header
             data-heading="{{:: 'pci_projects_project_storages_containers_' + ($ctrl.archive ? 'archive' : 'object') + '_title' | translate }}"
-            description="{{:: 'pci_projects_project_storages_containers_object_description' | translate}}"
+            description="{{:: ($ctrl.hasHighPerformanceStorage ? 'pci_projects_project_storages_containers_object_description' : '') | translate }}"
             class="mb-3"
         >
             <oui-guide-menu
+                data-ng-if="$ctrl.archive"
                 data-text="{{:: 'pci_project_guides_header' | translate }}"
             >
                 <oui-guide-menu-item href="{{ $ctrl.guideUrl }}" data-external>

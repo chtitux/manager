@@ -297,7 +297,7 @@ export default class PciStoragesContainersService {
     });
   }
 
-  deleteContainer(projectId, container, isHighPerfStorage) {
+  deleteContainer(projectId, container) {
     const promises = reduce(
       container.objects,
       (result, object) => [
@@ -308,7 +308,7 @@ export default class PciStoragesContainersService {
     );
 
     return this.$q.all(promises).then(() => {
-      if (isHighPerfStorage) {
+      if (container.isHighPerfStorage) {
         return this.$http.delete(
           `/cloud/project/${projectId}/region/${container.region}/storage/${container.name}`,
         );
