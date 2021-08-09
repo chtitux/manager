@@ -282,7 +282,9 @@ export default class AgoraIpOrderCtrl {
   isOfferFormValid() {
     if (
       !this.model.params.selectedOffer ||
-      (!this.model.params.selectedCountry && !this.isPrivateCloudOffer)
+      (!!this.model.params.selectedOffer.countries.length &&
+        !this.model.params.selectedCountry &&
+        !this.isPrivateCloudOffer)
     ) {
       return false;
     }
